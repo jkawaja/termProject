@@ -1,6 +1,6 @@
 import os
 from flask import Flask, redirect, url_for, request, render_template
-from forms import BeneficiaryForm
+from forms import RecipeForm
 import pandas as pd
 from werkzeug.utils import secure_filename
 

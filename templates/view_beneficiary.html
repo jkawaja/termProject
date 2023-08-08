@@ -21,11 +21,10 @@ Please find the details of the benficiary that was requested
       <img src="{{ url_for('static', filename='image_dir/{}'.format(beneficiary.pic)) }}">
     </div>
       <div class="col-md-8">
-        <h4 class="font-weight-bold mb-0">Beneficiary Name: <span class="text-muted font-weight-normal"> {{ beneficiary['name'] }}</span></h4>
-        <h4 class="font-weight-bold mb-0">Beneficiary Email: <span class="text-muted font-weight-normal"> {{ beneficiary.email }}</span></h4>
-        <h4 class="font-weight-bold mb-0">Beneficiary Phone: <span class="text-muted font-weight-normal"> {{ beneficiary.tel }}</span></h4>
-        <h4 class="font-weight-bold mb-0">Beneficiary DOB: <span class="text-muted font-weight-normal"> {{ beneficiary.dob }}</span></h4>
-        <h4 class="font-weight-bold mb-0">Beneficiary Description: <span class="text-muted font-weight-normal"> {{ beneficiary.desc }}</span></h4>
+        <h4 class="font-weight-bold mb-0">Recipe Name: <span class="text-muted font-weight-normal"> {{ recip['name'] }}</span></h4>
+        <h4 class="font-weight-bold mb-0">Recipe Ingredients: <span class="text-muted font-weight-normal"> {{ recipe.ingredients }}</span></h4>
+        <h4 class="font-weight-bold mb-0">Preparation Instructions: <span class="text-muted font-weight-normal"> {{ recipe.instructions }}</span></h4>
+        <h4 class="font-weight-bold mb-0">Serving Instructions: <span class="text-muted font-weight-normal"> {{ recipe.serving }}</span></h4>
     </div>
     </div>
   </div>
