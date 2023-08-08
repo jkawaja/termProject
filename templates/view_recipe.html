@@ -21,7 +21,7 @@ Please find the details of the recipe that was requested
       <img src="{{ url_for('static', filename='image_dir/{}'.format(recipe.pic)) }}">
     </div>
       <div class="col-md-8">
-        <h4 class="font-weight-bold mb-0">Recipe Name: <span class="text-muted font-weight-normal"> {{ recipe['name'] }}</span></h4>
+        <h4 class="font-weight-bold mb-0">Recipe Name: <span class="text-muted font-weight-normal"> {{ recipe.name }}</span></h4>
         <h4 class="font-weight-bold mb-0">Recipe Ingredients: <span class="text-muted font-weight-normal"> {{ recipe.ingredients }}</span></h4>
         <h4 class="font-weight-bold mb-0">Preparation Instructions: <span class="text-muted font-weight-normal"> {{ recipe.preparations }}</span></h4>
         <h4 class="font-weight-bold mb-0">Serving Instructions: <span class="text-muted font-weight-normal"> {{ recipe.instructions }}</span></h4>
