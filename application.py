@@ -38,7 +38,7 @@ def add_recipe_auto():
     """
     form = RecipeForm()
     if form.validate_on_submit():
-        recipe_name = form.recipe_.data
+        recipe_name = form.recipe_name.data
         recipe_ingredients = form.recipe_ingredients.data
         recipe_prep_instructions = form.recipe_prep_instructions.data
         recipe_serving_instructions = form.recipe_serving_instructions.data
