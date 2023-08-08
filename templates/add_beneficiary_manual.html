@@ -17,11 +17,9 @@ Please fill up the following form
 {% endblock %}
 
 {% block H2_Content %}
-  <form action = "http://localhost:5000/add_beneficiary" method = "post">
-  <label for="fname">First name:</label><br>
-  <input type="text" id="fname" name="fname" value="John"><br>
-  <label for="lname">Last name:</label><br>
-  <input type="text" id="lname" name="lname" value="Doe"><br><br>
+  <form action = "http://localhost:5000/add_recipe" method = "post">
+  <label for="recipename">Recipe Name:</label><br>
+  <input type="text" id="recipename" name="recipename" value="Tomato Soup"><br>
   <input type="submit" value="Submit">
 </form>
 {% endblock %}

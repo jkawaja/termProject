@@ -31,22 +31,22 @@ def add_beneficiary():
     else:
         return render_template('add_beneficiary_manual.html')
 
-@app.route('/add_beneficiary_auto', methods = ['POST', 'GET'])
-def add_beneficiary_auto():
+@app.route('/add_recipe_auto', methods = ['POST', 'GET'])
+def add_recipe_auto():
     """
     Function to us inbuilt methods to add a beneficiary, with file handling
     :return:
     """
-    form = BeneficiaryForm()
+    form = RecipeForm()
     if form.validate_on_submit():
         recipe_name = form.applicant_name.data
-        recipe_ingredients = form.applicant_email.data
+        recipe_ingredients = form.recipe_ingredients.data
         applicant_tel = form.applicant_tel.data
         applicant_dob = form.applicant_dob.data
         applicant_desc = form.applicant_desc.data
         pic_filename = recipe_name.lower().replace(" ", "_") + '.' + secure_filename(form.applicant_picture.data.filename).split('.')[-1]
         form.applicant_picture.data.save(os.path.join(app.config['SUBMITTED_IMG'] + pic_filename))
-        df = pd.DataFrame([{'name': recipe_name, 'email': recipe_ingredients, 'tel': applicant_tel, 'dob':applicant_dob, 'desc':applicant_desc, 'pic': pic_filename}])
+        df = pd.DataFrame([{'name': recipe_name, 'ingredients': recipe_ingredients, 'tel': applicant_tel, 'dob':applicant_dob, 'desc':applicant_desc, 'pic': pic_filename}])
         df.to_csv(os.path.join(app.config['SUBMITTED_DATA'] + recipe_name.lower().replace(" ", "_") + '.csv'))
         return redirect(url_for('hello_world'))
     else:

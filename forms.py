@@ -4,11 +4,11 @@ from wtforms.fields import StringField, TextAreaField
 from wtforms.fields.html5 import DateField, EmailField, TelField
 from wtforms.validators import DataRequired, Length
 
-class BeneficiaryForm(FlaskForm):
-    applicant_name = StringField('Applicant Name:', validators=[DataRequired()])
-    applicant_email = EmailField('Applicants Email:', validators=[DataRequired()])
-    applicant_tel = TelField('Applicants Phone:', validators=[DataRequired(), Length(10)])
+class RecipeForm(FlaskForm):
+    recipe_name = StringField('Recipe Name:', validators=[DataRequired()])
+    recipe_ingredients = StringField('Recipe Ingredients:', validators=[DataRequired()])
+    applicant_tel = TelField('Applicants Phone:', validators=[DataRequired()])
     applicant_desc = TextAreaField('Details About the applicant:', validators=[DataRequired()])
     applicant_dob = DateField('Applicant DOB:', validators=[DataRequired()])
-    applicant_picture = FileField('Applicant Picture:', validators=[FileRequired()])
+    recipe_picture = FileField('Recipe Picture:', validators=[FileRequired()])
 
