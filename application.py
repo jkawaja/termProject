@@ -62,6 +62,9 @@ def render_information(name):
     print (df.iloc[0]['name'])
     return render_template('view_recipe.html', recipe=df.iloc[0])
 
+@app.route('')
+
+
 
 @app.route('/variabletest/<name>')
 def print_variable(name):
