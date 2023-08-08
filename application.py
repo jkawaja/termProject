@@ -42,8 +42,8 @@ def add_recipe_auto():
         recipe_ingredients = form.recipe_ingredients.data
         recipe_prep_instructions = form.recipe_prep_instructions.data
         recipe_serving_instructions = form.recipe_serving_instructions.data
-        pic_filename = recipe_name.lower().replace(" ", "_") + '.' + secure_filename(form.applicant_picture.data.filename).split('.')[-1]
-        form.applicant_picture.data.save(os.path.join(app.config['SUBMITTED_IMG'] + pic_filename))
+        pic_filename = recipe_name.lower().replace(" ", "_") + '.' + secure_filename(form.recipe_picture.data.filename).split('.')[-1]
+        form.recipe_picture.data.save(os.path.join(app.config['SUBMITTED_IMG'] + pic_filename))
         df = pd.DataFrame([{'name': recipe_name, 'ingredients': recipe_ingredients, 'preparations': recipe_prep_instructions, 'instructions':recipe_serving_instructions, 'pic': pic_filename}])
         df.to_csv(os.path.join(app.config['SUBMITTED_DATA'] + recipe_name.lower().replace(" ", "_") + '.csv'))
         return redirect(url_for('hello_world'))

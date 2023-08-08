@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-Beneficiary Management
+Recipe Management
 {% endblock %}
 
 {% block H1_Description %}
@@ -11,20 +11,20 @@ Beneficiary Management
 {% endblock %}
 
 {% block H2_Description %}
-Please find the details of the benficiary that was requested
+Please find the details of the recipe that was requested
 {% endblock %}
 
 {% block H2_Content %}
 <div class="container">
   <div class="row">
     <div class="col-md-4">
-      <img src="{{ url_for('static', filename='image_dir/{}'.format(beneficiary.pic)) }}">
+      <img src="{{ url_for('static', filename='image_dir/{}'.format(recipe.pic)) }}">
     </div>
       <div class="col-md-8">
-        <h4 class="font-weight-bold mb-0">Recipe Name: <span class="text-muted font-weight-normal"> {{ recip['name'] }}</span></h4>
+        <h4 class="font-weight-bold mb-0">Recipe Name: <span class="text-muted font-weight-normal"> {{ recipe['name'] }}</span></h4>
         <h4 class="font-weight-bold mb-0">Recipe Ingredients: <span class="text-muted font-weight-normal"> {{ recipe.ingredients }}</span></h4>
-        <h4 class="font-weight-bold mb-0">Preparation Instructions: <span class="text-muted font-weight-normal"> {{ recipe.instructions }}</span></h4>
-        <h4 class="font-weight-bold mb-0">Serving Instructions: <span class="text-muted font-weight-normal"> {{ recipe.serving }}</span></h4>
+        <h4 class="font-weight-bold mb-0">Preparation Instructions: <span class="text-muted font-weight-normal"> {{ recipe.preparations }}</span></h4>
+        <h4 class="font-weight-bold mb-0">Serving Instructions: <span class="text-muted font-weight-normal"> {{ recipe.instructions }}</span></h4>
     </div>
     </div>
   </div>
