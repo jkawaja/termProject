@@ -33,7 +33,7 @@ def add_recipe():
 @app.route('/add_recipe_auto', methods = ['POST', 'GET'])
 def add_recipe_auto():
     """
-    Function to us inbuilt methods to add a recipe, with file handling
+    Function to use in built methods to add a recipe, with file handling
     :return:
     """
     form = RecipeForm()
@@ -62,8 +62,12 @@ def render_information(name):
     print (df.iloc[0]['name'])
     return render_template('view_recipe.html', recipe=df.iloc[0])
 
-@app.route('')
-
+@app.route('/search_recipe_auto', methods = ['POST', 'GET'])
+def search_recipe_auto():
+    """
+    Function to use in built methods to search recipe based on stored CSV
+    :return:
+    """
 
 
 @app.route('/variabletest/<name>')
