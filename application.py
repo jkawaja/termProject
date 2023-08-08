@@ -17,36 +17,34 @@ def hello_world():
     """
     return render_template('index.html')
 
-@app.route('/add_beneficiary', methods = ['POST', 'GET'])
-def add_beneficiary():
+@app.route('/add_recipe', methods = ['POST', 'GET'])
+def add_recipe():
     """
-    Function add a beneficiary using a manual form
+    Function add a Recipe using a manual form
     :return:
     """
     if request.method == 'POST':
-        fname = request.form['fname']
-        lname = request.form['lname']
-        print(fname, lname)
-        return "Beneficiary added successfully"
+        recipename = request.form['fname']
+        print(recipename)
+        return "Recipe added successfully"
     else:
-        return render_template('add_beneficiary_manual.html')
+        return render_template('add_recipe_manual.html')
 
 @app.route('/add_recipe_auto', methods = ['POST', 'GET'])
 def add_recipe_auto():
     """
-    Function to us inbuilt methods to add a beneficiary, with file handling
+    Function to us inbuilt methods to add a recipe, with file handling
     :return:
     """
     form = RecipeForm()
     if form.validate_on_submit():
-        recipe_name = form.applicant_name.data
+        recipe_name = form.recipe_.data
         recipe_ingredients = form.recipe_ingredients.data
-        applicant_tel = form.applicant_tel.data
-        applicant_dob = form.applicant_dob.data
-        applicant_desc = form.applicant_desc.data
+        recipe_prep_instructions = form.recipe_prep_instructions.data
+        recipe_serving_instructions = form.recipe_serving_instructions.data
         pic_filename = recipe_name.lower().replace(" ", "_") + '.' + secure_filename(form.applicant_picture.data.filename).split('.')[-1]
         form.applicant_picture.data.save(os.path.join(app.config['SUBMITTED_IMG'] + pic_filename))
-        df = pd.DataFrame([{'name': recipe_name, 'ingredients': recipe_ingredients, 'tel': applicant_tel, 'dob':applicant_dob, 'desc':applicant_desc, 'pic': pic_filename}])
+        df = pd.DataFrame([{'name': recipe_name, 'ingredients': recipe_ingredients, 'preparations': recipe_prep_instructions, 'instructions':recipe_serving_instructions, 'pic': pic_filename}])
         df.to_csv(os.path.join(app.config['SUBMITTED_DATA'] + recipe_name.lower().replace(" ", "_") + '.csv'))
         return redirect(url_for('hello_world'))
     else:
@@ -57,12 +55,12 @@ def add_recipe_auto():
 def render_information(name):
     """
     Function to return the required information
-    :param name: Name of the beneficiary
+    :param name: Name of the recipe
     :return:
     """
     df = pd.read_csv(os.path.join(app.config['SUBMITTED_DATA'] + name.lower().replace(" ", "_") + '.csv'), index_col=False)
     print (df.iloc[0]['name'])
-    return render_template('view_beneficiary.html', beneficiary=df.iloc[0])
+    return render_template('view_recipe.html', recipe=df.iloc[0])
 
 
 @app.route('/variabletest/<name>')

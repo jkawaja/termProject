@@ -25,11 +25,11 @@ Please fill up the following form
     <div class="col-md-5">
         <h3>Recipe Basic Information</h3>
         <table>
-            {{ render_field(form.recipe_name, size=20) }}
-            {{ render_field(form.recipe_ingredients, size=20) }}
-            {{ render_field(form.recipe_prep_instructions, size=10) }}
+            {{ render_field(form.recipe_name, size=40) }}
+            {{ render_field(form.recipe_ingredients, size=40) }}
+            {{ render_field(form.recipe_prep_instructions, size=100) }}
             {{ render_field(form.recipe_picture) }}
-            {{ render_field(form.recipe_instructions, size=200) }}
+            {{ render_field(form.recipe_serving_instructions, size=200) }}
         </table>
     </div>
     <table>

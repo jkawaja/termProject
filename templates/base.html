@@ -26,9 +26,13 @@
                 <h1 class="title">{% block page_title %}{% endblock %}</h1>
                 <nav>
                     <ul>
-                        <li><a href={{ url_for('hello_admin') }}>Admin Portal</a></li>
+<!--                        <li><a href={{ url_for('hello_admin') }}>Admin Portal</a></li>-->
+                        <li><a href="/">Home</a></li>
+<!--                        <li><a href="#">Display</a></li>-->
+                        <li><a href={{ url_for('add_recipe_auto') }}>Upload</a></li>
+                        <li><a href="#">Remove</a></li>
                         <li><a href="#">Search</a></li>
-                        <li><a href={{ url_for('add_beneficiary_auto') }}>Add Info</a></li>
+
                     </ul>
                 </nav>
             </header>
@@ -53,7 +57,7 @@
 
         <div class="footer-container">
             <footer class="wrapper">
-                <h3>By Students of CP1895</h3>
+                <h3>By Justin Kawaja</h3>
             </footer>
         </div>
 
