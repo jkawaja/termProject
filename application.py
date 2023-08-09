@@ -62,15 +62,27 @@ def render_information(name):
     print(df.iloc[0]['name'])
     return render_template('view_recipe.html', recipe=df.iloc[0])
 
-@app.route('/view_all_recipes')
-def viefw_all_recipes():
+@app.route('/view_all_recipes_auto')
+def view_all_recipes_auto():
     """
     Shows all recipes added
     :return:
     """
     files = os.listdir(app.config['SUBMITTED_DATA'])
     df = pd.DataFrame()
-
+    counter = 0
+    recipe_list = []
+    for file in files:
+        if counter == 0:
+            df = pd.read_csv('static/data_dir/' + file)
+        else:
+            df1 = df
+            df = pd.read_csv('static/data_dir/' + file)
+            df = pd.concat([df, df1])
+        counter += 1
+    for counter in range(0, len(df.index)):
+        recipe_list.append([df.iloc[i][5], df.iloc[i][1], df.iloc[i][1].replace(" ", "_")])
+    return render_template('view_all_recipes_auto.html', recipes=recipe_list)
 
 @app.route('/search_recipe_auto', methods = ['GET', 'POST'])
 def search_recipe_auto():
@@ -86,17 +98,33 @@ def search_recipe_auto():
         files = os.listdir(app.config['SUBMITTED_DATA'])
         for file in files:
             df = pd.read_csv('static/data_dir/' + file)
-            # print (df.columns)
-            # print (df['name'][0])
             if df['name'][0].lower() == search_name.lower():
                 return render_template('view_recipe.html', recipe=df.iloc[0])
-            elif df['ingredients'][0].lower().find(search_name.lower()) != -1:
-                df['ingredients'][0] = ingredients
             else:
                 return render_template('search_recipe_auto.html', search_form=search_form)
     else:
         return render_template('search_recipe_auto.html', search_form=search_form)
 
+
+@app.route('/remove_recipe_auto', methods= ['GET', 'POST'])
+def remove_recipe_auto():
+    """
+    Function to remove recipe based on stored CSV.
+    :return:
+    """
+    search_form = SearchForm()
+    if search_form.validate_on_submit():
+        search_name = request.form['search_name']
+        files = os.listdir(app.config['SUBMITTED_DATA'])
+        for file in files:
+            df = pd.read_csv('static/data_dir/' + file)
+            if df['name'][0].lower() == search_name.lower():
+                os.remove(file)
+            else:
+                print("File not found")
+                return render_template('remove_recipe_auto.html', search_form=search_form)
+    else:
+        return render_template('remove_recipe_auto.html', search_form=search_form)
 
 
 @app.route('/admin')

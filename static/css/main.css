@@ -51,6 +51,10 @@ textarea {
     padding: 0.2em 0;
 }
 
+.recipe_image img {
+    max-width: 75%;
+}
+
 
 /* ===== Initializr Styles ==================================================
    Author: Jonathan Verrecchia - verekia.com/initializr/responsive-template
