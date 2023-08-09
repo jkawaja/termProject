@@ -12,4 +12,4 @@ class RecipeForm(FlaskForm):
     recipe_picture = FileField('Recipe Picture:', validators=[FileRequired()])
 
 class SearchForm(FlaskForm):
-    search_query = StringField('', validators=[DataRequired()])
+    search_name = StringField('', validators=[DataRequired()])

@@ -1,1 +1,1 @@
-This directory contains all the beneficiary image files.
+This directory contains all the recipe image files.

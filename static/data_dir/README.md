@@ -1,1 +1,1 @@
-This directory contains all the beneficiary data files.
+This directory contains all the recipe data files.
