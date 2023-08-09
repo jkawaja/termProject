@@ -62,7 +62,7 @@ def render_information(name):
     print(df.iloc[0]['name'])
     return render_template('view_recipe.html', recipe=df.iloc[0])
 
-@app.route('view_all_recipes')
+@app.route('/view_all_recipes')
 def viefw_all_recipes():
     """
     Shows all recipes added

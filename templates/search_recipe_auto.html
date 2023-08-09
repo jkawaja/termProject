@@ -2,41 +2,28 @@
 {% from "form-macros.html" import render_field %}
 
 {% block page_title %}
-Recipe Management
+View All Recipes
 {% endblock %}
 
 {% block H1_Description %}
-Search for a recipe
+View All Recipes
 {% endblock %}
 
 {% block H1_Content %}
-Please fill the form in the below section to search for existing recipe.
+All recipes that are currently in the database:
 {% endblock %}
 
 {% block H2_Description %}
-Please fill up the following form to search
 {% endblock %}
 
 {% block H2_Content %}
 <section>
-    <form action="/search_recipe_auto" enctype="multipart/form-data" method="post">
-        {{ search_form.csrf_token }}
-<div class="row">
-    <div class="col-md-2">
-        <h3>Recipe Basic Information</h3>
-        <table>
-            {{ render_field(search_form.search_name, size=40) }}
-        </table>
-    </div>
-    <table>
-        <tr class="submit">
-            <td></td>
-            <td>
-                <button type="submit">Submit</button>
-            </td>
-        </tr>
-    </table>
-    </div>
-    </form>
+{% for recipe in recipes %}
+            <figure>
+                <a href="{{ url_for('render_information', name = recipe[2]) }}">
+                    <img class="recipe-image" src="static/image_dir/{{ item[0] }}" alt="{{ item[1] }}">
+                </a>
+            </figure>
+        {% endfor %}
     </section>
 {% endblock %}
