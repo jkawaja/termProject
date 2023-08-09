@@ -62,10 +62,22 @@ def render_information(name):
     print(df.iloc[0]['name'])
     return render_template('view_recipe.html', recipe=df.iloc[0])
 
+@app.route('view_all_recipes')
+def viefw_all_recipes():
+    """
+    Shows all recipes added
+    :return:
+    """
+    files = os.listdir(app.config['SUBMITTED_DATA'])
+    df = pd.DataFrame()
+
+
 @app.route('/search_recipe_auto', methods = ['GET', 'POST'])
 def search_recipe_auto():
     """
-    Function to use in built methods to search recipe based on stored CSV
+    Function to use in built methods to search recipe based on stored CSV.
+    Search for recipe by name or by ingredient. Search names first, then try
+    ingredients.
     :return:
     """
     search_form = SearchForm()
@@ -74,15 +86,16 @@ def search_recipe_auto():
         files = os.listdir(app.config['SUBMITTED_DATA'])
         for file in files:
             df = pd.read_csv('static/data_dir/' + file)
-            print (df.columns)
-            print (df['name'][0])
+            # print (df.columns)
+            # print (df['name'][0])
             if df['name'][0].lower() == search_name.lower():
                 return render_template('view_recipe.html', recipe=df.iloc[0])
+            elif df['ingredients'][0].lower().find(search_name.lower()) != -1:
+                df['ingredients'][0] = ingredients
             else:
-                pass
+                return render_template('search_recipe_auto.html', search_form=search_form)
     else:
         return render_template('search_recipe_auto.html', search_form=search_form)
-
 
 
 
