@@ -69,7 +69,6 @@ def search_recipe_auto():
     :return:
     """
     search_form = SearchForm()
-
     if search_form.validate_on_submit():
         search_name = request.form['search_name']
         files = os.listdir(app.config['SUBMITTED_DATA'])
@@ -79,6 +78,8 @@ def search_recipe_auto():
             print (df['name'][0])
             if df['name'][0].lower() == search_name.lower():
                 return render_template('view_recipe.html', recipe=df.iloc[0])
+            else:
+                pass
     else:
         return render_template('search_recipe_auto.html', search_form=search_form)
 
