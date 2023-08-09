@@ -19,14 +19,13 @@ Please fill up the following form to search
 
 {% block H2_Content %}
 <section>
-    <form action="" enctype="multipart/form-data" method="post">
-        {{ form.csrf_token }}
+    <form action="/search_recipe_auto" enctype="multipart/form-data" method="post">
+        {{ search_form.csrf_token }}
 <div class="row">
     <div class="col-md-2">
         <h3>Recipe Basic Information</h3>
         <table>
-            {{ render_field(form.recipe_name, size=40) }}
-<!--            {{ render_field(form.recipe_ingredients, size=40) }}-->
+            {{ render_field(search_form.search_query, size=40) }}
         </table>
     </div>
     <table>

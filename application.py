@@ -1,6 +1,6 @@
 import os
 from flask import Flask, redirect, url_for, request, render_template
-from forms import RecipeForm
+from forms import RecipeForm, SearchForm
 import pandas as pd
 from werkzeug.utils import secure_filename
 
@@ -68,16 +68,21 @@ def search_recipe_auto():
     Function to use in built methods to search recipe based on stored CSV
     :return:
     """
-    form = RecipeForm()
-    if form.validate_on_submit():
-        recipe_name = form.recipe_name.data
-        name = recipe_name.lower().replace(" ", "_")
-        print(name)
-        page = render_information(name)
-        df.
-        return render_template('view_recipe.html', recipe=df.iloc[0])
+    search_form = SearchForm()
+    if search_form.validate_on_submit():
+        files = os.listdir(app.config['SUBMITTED_DATA'])
+        search_name = request.form['search_name']
+        df = pd.DataFrame()
+        for file in files:
+            df = pd.read_csv('static/data_dir/' + file)
+            if df['recipe_name'][0].lower() == search_name.lower():
+                print(search_name)
+        return render_template(search_name)
     else:
-        return render_template('search_recipe_auto.html', form=form)
+        return render_template('search_recipe_auto.html', search_form=search_form)
+
+        # name = recipe_name.lower().replace(" ", "_")
+
 
 
 @app.route('/admin')
