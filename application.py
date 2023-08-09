@@ -59,7 +59,7 @@ def render_information(name):
     :return:
     """
     df = pd.read_csv(os.path.join(app.config['SUBMITTED_DATA'] + name.lower().replace(" ", "_") + '.csv'), index_col=False)
-    print (df.iloc[0]['name'])
+    print(df.iloc[0]['name'])
     return render_template('view_recipe.html', recipe=df.iloc[0])
 
 @app.route('/search_recipe_auto', methods = ['POST', 'GET'])
@@ -68,6 +68,13 @@ def search_recipe_auto():
     Function to use in built methods to search recipe based on stored CSV
     :return:
     """
+    form = RecipeForm()
+    if form.validate_on_submit():
+        recipe_name = form.recipe_name.data
+        name = recipe_name.lower().replace(" ", "_")
+        return render_information(name)
+    else:
+        return render_template('search_recipe_auto.html', form=form)
 
 
 @app.route('/variabletest/<name>')

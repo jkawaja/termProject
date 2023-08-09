@@ -6,11 +6,11 @@ Recipe Management
 {% endblock %}
 
 {% block H1_Description %}
-Add a recipe
+Search for a recipe
 {% endblock %}
 
 {% block H1_Content %}
-Please fill  the form in the below section to search for existing recipe.
+Please fill the form in the below section to search for existing recipe.
 {% endblock %}
 
 {% block H2_Description %}
@@ -26,7 +26,7 @@ Please fill up the following form to search
         <h3>Recipe Basic Information</h3>
         <table>
             {{ render_field(form.recipe_name, size=40) }}
-            {{ render_field(form.recipe_ingredients, size=40) }}
+<!--            {{ render_field(form.recipe_ingredients, size=40) }}-->
         </table>
     </div>
     <table>
