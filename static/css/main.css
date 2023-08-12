@@ -184,10 +184,11 @@ nav a:hover {
 
     nav a {
         float: left;
-        width: 17%;
-        margin: 0 2%;
-        padding: 15px 2%;
+        width: 13.5%;
+        margin: 0 1.5%;
+        padding: 13px 2%;
         margin-bottom: 0;
+        font-size: 13px;
     }
 
     nav li:first-child a {
