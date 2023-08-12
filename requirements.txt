@@ -1,1 +1,4 @@
 flask~=2.2.2
+WTForms==2.3.3
+flask-wtf
+pandas
