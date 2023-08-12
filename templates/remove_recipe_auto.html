@@ -6,24 +6,24 @@ Recipe Management
 {% endblock %}
 
 {% block H1_Description %}
-Search for a recipe
+Remove a recipe from database
 {% endblock %}
 
 {% block H1_Content %}
-Please fill the form in the below section to search for existing recipe.
+Please fill the form in the below section to remove an existing recipe.
 {% endblock %}
 
 {% block H2_Description %}
-Please fill up the following form to search
+Please fill up the following form to perform removal
 {% endblock %}
 
 {% block H2_Content %}
 <section>
-    <form action="/search_recipe_auto" enctype="multipart/form-data" method="post">
+    <form action="/remove_recipe_auto" enctype="multipart/form-data" method="post">
         {{ search_form.csrf_token }}
 <div class="row">
     <div class="col-md-2">
-        <h3>Recipe Basic Information</h3>
+        <h3>Remove Recipe</h3>
         <table>
             {{ render_field(search_form.search_name, size=40) }}
         </table>

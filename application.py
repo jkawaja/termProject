@@ -1,5 +1,5 @@
 import os
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask, redirect, url_for, request, render_template, current_app
 from forms import RecipeForm, SearchForm
 import pandas as pd
 from werkzeug.utils import secure_filename
@@ -59,7 +59,6 @@ def render_information(name):
     :return:
     """
     df = pd.read_csv(os.path.join(app.config['SUBMITTED_DATA'] + name.lower().replace(" ", "_") + '.csv'), index_col=False)
-    print(df.iloc[0]['name'])
     return render_template('view_recipe.html', recipe=df.iloc[0])
 
 @app.route('/view_all_recipes_auto')
@@ -69,20 +68,20 @@ def view_all_recipes_auto():
     :return:
     """
     files = os.listdir(app.config['SUBMITTED_DATA'])
-    df = pd.DataFrame()
+    viewRecipes = []
     counter = 0
-    recipe_list = []
+    df = pd.DataFrame()
     for file in files:
         if counter == 0:
             df = pd.read_csv('static/data_dir/' + file)
         else:
-            df1 = df
+            newDF = df
             df = pd.read_csv('static/data_dir/' + file)
-            df = pd.concat([df, df1])
+            df = pd.concat([df, newDF])
         counter += 1
     for counter in range(0, len(df.index)):
-        recipe_list.append([df.iloc[i][5], df.iloc[i][1], df.iloc[i][1].replace(" ", "_")])
-    return render_template('view_all_recipes_auto.html', recipes=recipe_list)
+        viewRecipes.append([df.iloc[counter][5], df.iloc[counter][1], df.iloc[counter][1].replace(" ", "_")])
+    return render_template('view_all_recipes_auto.html', recipes=viewRecipes)
 
 @app.route('/search_recipe_auto', methods = ['GET', 'POST'])
 def search_recipe_auto():
@@ -119,9 +118,9 @@ def remove_recipe_auto():
         for file in files:
             df = pd.read_csv('static/data_dir/' + file)
             if df['name'][0].lower() == search_name.lower():
-                os.remove(file)
+                os.remove(app.config['SUBMITTED_DATA'] + search_name.lower().replace(" ", "_") + '.csv')
+                return render_template('index.html')
             else:
-                print("File not found")
                 return render_template('remove_recipe_auto.html', search_form=search_form)
     else:
         return render_template('remove_recipe_auto.html', search_form=search_form)
